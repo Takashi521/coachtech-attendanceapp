@@ -1,0 +1,18 @@
+# Laravel（src 配下）
+src/vendor/
+src/node_modules/
+src/storage/
+src/.env
+src/.phpunit.result.cache
+src/.DS_Store
+
+# Docker MySQL のデータ
+docker/mysql/data/
+
+# Mac のゴミファイル
+.DS_Store
+
+# エディタの設定など（必要に応じて）
+.idea/
+.vscode/
+
