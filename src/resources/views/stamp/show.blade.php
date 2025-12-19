@@ -17,10 +17,6 @@
     <p>出勤：{{ $attendance->work_start_time ?? '-' }}</p>
     <p>退勤：{{ $attendance->work_end_time ?? '-' }}</p>
 
-    @if(session('message'))
-    <p>{{ session('message') }}</p>
-    @endif
-
     @if($attendance->status === 'not_worked')
     <form method="POST" action="{{ route('attendance.work_start') }}">
         @csrf

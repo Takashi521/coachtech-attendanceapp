@@ -8,20 +8,18 @@ class CreateCorrectionRequestBreaksTable extends Migration
 {
     public function up(): void
     {
-        Schema::create('correction_request_breaks', function (Blueprint $table):void {
+        Schema::create('correction_request_breaks', function (Blueprint $table): void {
             $table->id();
-
-            $table->foreignId('correction_request_id')
-                ->constrained()
-                ->onDelete('cascade');
-
-            $table->unsignedTinyInteger('break_order')
-                ->default(1); // 1回目 / 2回目 ... の順番
-
+            $table->unsignedBigInteger('correction_request_id');
+            $table->integer('break_order');
             $table->time('requested_break_start_time')->nullable();
             $table->time('requested_break_end_time')->nullable();
-
             $table->timestamps();
+
+            $table->foreign('correction_request_id')
+                ->references('id')->on('correction_requests')
+                ->onDelete('cascade');
+            $table->unique(['correction_request_id', 'break_order']);
         });
     }
 

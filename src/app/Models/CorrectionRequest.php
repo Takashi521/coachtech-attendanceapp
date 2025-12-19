@@ -11,6 +11,15 @@ class CorrectionRequest extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'attendance_id',
+        'user_id',
+        'status',
+        'requested_work_start_time',
+        'requested_work_end_time',
+        'requested_note',
+    ];
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
