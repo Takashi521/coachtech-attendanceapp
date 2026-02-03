@@ -1,7 +1,7 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: #f2f2f2;
+    background: #f3f3f3;
 }
 
 .page-container {
@@ -27,10 +27,9 @@ body {
 }
 
 .site-header__inner {
-    max-width: 1512px;
     width: 100%;
     height: 80px;
-    margin: 0 auto;
+    margin: 0 ;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -44,10 +43,12 @@ body {
     display: block;
 }
 
+
+
 .site-header__nav-list {
     list-style: none;
     display: flex;
-    gap: 28px;
+    gap: 40px;
     margin: 0;
     padding: 0;
     align-items: center;
@@ -78,4 +79,292 @@ body {
 
 .site-main {
     padding-top: 20px;
+    background: #f3f3f3;
+    min-height: calc(100vh - 80px);
+}
+
+/* =========================================================
+   Auth: Register
+========================================================= */
+.register-page {
+    background: #fff;
+    padding: 144px 0;
+}
+
+.register-card {
+    width: 680px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.register-title {
+    font-family: Inter, Arial, sans-serif;
+    font-size: 36px;
+    font-weight: 700;
+    margin: 0 0 32px;
+}
+
+.register-form {
+    width: 680px;
+    margin: 0 auto;
+}
+
+.register-field {
+    margin: 0 0 22px;
+    text-align: left;
+}
+
+.register-label {
+    display: block;
+    font-family: Inter, Arial, sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    margin: 0 0 8px;
+    color: #000;
+}
+
+.register-input {
+    width: 680px;
+    height: 45px;
+    box-sizing: border-box;
+    border: 1px solid #bfbfbf;
+    border-radius: 4px;
+    padding: 0 12px;
+    font-family: Inter, Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.register-submit {
+    width: 680px;
+    height: 60px;
+    border: 0;
+    border-radius: 4px;
+    background: #000;
+    color: #fff;
+    font-family: Inter, Arial, sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 32px;
+}
+
+.register-submit:hover {
+    opacity: 0.9;
+}
+
+.register-link-wrap {
+    margin-top: 28px;
+    text-align: center;
+}
+
+.register-link,
+.register-link:visited,
+.register-link:hover,
+.register-link:active {
+    font-family: Inter, Arial, sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: #0073CC;
+    text-decoration: none;
+}
+
+/* =========================================================
+   Auth（ログイン）
+========================================================= */
+.login-page {
+    background: #fff;
+    padding: 60px 0 80px;
+}
+
+.login-card {
+    width: 680px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.login-title {
+    font-family: Inter, Arial, sans-serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: #000;
+    margin: 0 0 40px;
+}
+
+.login-form {
+    width: 680px;
+    margin: 0 auto;
+}
+
+.login-field {
+    text-align: left;
+    margin-bottom: 28px;
+}
+
+.login-label {
+    display: block;
+    font-family: Inter, Arial, sans-serif;
+    font-size: 24px;
+    /* 2. ラベル 24px */
+    font-weight: 700;
+    color: #000;
+    margin: 0 0 10px;
+}
+
+.login-input {
+    width: 680px;
+    height: 60px;
+    /* 3. 枠 680*60 */
+    box-sizing: border-box;
+    border: 1px solid #cfcfcf;
+    border-radius: 3px;
+    padding: 0 14px;
+    font-size: 16px;
+}
+
+.login-submit {
+    width: 680px;
+    height: 60px;
+    /* 3. ボタン 680*60 */
+    margin-top: 18px;
+    border: none;
+    border-radius: 4px;
+    background: #000;
+    color: #fff;
+    font-family: Inter, Arial, sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.login-link-wrap {
+    margin-top: 18px;
+}
+
+.login-link {
+    font-size: 20px;
+    /* 4. 20px */
+    font-weight: 400;
+    color: #0073CC;
+    /* 4. #0073CC */
+    text-decoration: none;
+}
+
+.login-link:hover {
+    text-decoration: underline;
+}
+
+.verify-page {
+    background: #fff;
+    min-height: calc(100vh - 80px);
+    /* ヘッダー80pxなら */
+    padding: 60px 0 80px;
+}
+
+.verify-card {
+    width: 900px;
+    margin: 0 auto;
+    background: #fff;
+    text-align: center;
+    padding: 120px 0;
+}
+
+.verify-text {
+    font-family: Inter, Arial, sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: #000;
+    line-height: 1.8;
+    margin: 0 0 30px;
+}
+
+.verify-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 220px;
+    height: 44px;
+    border: 1px solid #000;
+    border-radius: 6px;
+    background: #d9d9d9;
+    color: #000;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.verify-resend {
+    margin-top: 18px;
+    background: transparent;
+    border: none;
+    color: #0073CC;
+    font-size: 20px;
+    font-weight: 400;
+    cursor: pointer;
+    padding: 0;
+}
+
+/* =========================================================
+   背景：認証系・管理者ログインは白、それ以外はグレー
+========================================================= */
+
+/* 一般ユーザー：会員登録 / ログイン / 認証 */
+.register-page,
+.login-page,
+.verify-page {
+    background: #fff;
+}
+
+/* 管理者ログイン */
+.admin-login-page {
+    background: #fff;
+}
+
+.register-page,
+.login-page,
+.verify-page,
+.admin-login-page {
+    min-height: calc(100vh - 80px);
+}
+
+.register-card,
+.login-card,
+.verify-card {
+    background: #fff;
+}
+
+/* ---- register error summary (no box, no bullets) ---- */
+.register-error-summary,
+.auth-error-summary {
+    text-align: left;
+    margin: 6px 0 10px;
+    padding: 0;
+}
+
+.register-error-message,
+.auth-error-message {
+    margin: 0 0 2px;
+    padding: 0;
+    color: #d00000;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1.25;
+}
+
+.auth-page {
+    background-color: #fff;
+}
+
+.auth-page .site-main {
+    background-color: #fff;
+    padding-top: 0;
+}
+
+.auth-error-summary--login {
+    margin: 2px 0 6px;
+    margin-bottom: 28px;
+}
+
+.auth-error-summary--login .auth-error-message {
+    margin-bottom: 0;
+    line-height: 1.15;
 }

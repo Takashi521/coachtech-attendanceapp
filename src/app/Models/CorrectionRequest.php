@@ -18,6 +18,7 @@ class CorrectionRequest extends Model
         'requested_work_start_time',
         'requested_work_end_time',
         'requested_note',
+        'requested_work_date',
     ];
 
     public function user(): BelongsTo

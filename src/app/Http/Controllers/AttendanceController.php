@@ -171,11 +171,23 @@ class AttendanceController extends Controller
             $workDate = $date->toDateString();
             $attendance = $attendances->get($workDate);
 
+            // ★ まず必ず変数を定義する（これがないと未定義エラーになる）
+            $breakMinutes = $attendance ? $this->breakMinutes($attendance) : 0;
+
+            $workMinutes = 0;
+            if ($attendance && $attendance->work_start_time && $attendance->work_end_time) {
+                $workMinutes = $this->workMinutes($attendance);
+            }
+
             $rows[] = [
                 'label' => $date->format('m/d') . '(' . $jpDow[$date->dayOfWeek] . ')',
                 'attendance' => $attendance,
-                'break_total' => $attendance ? $this->formatMinutes($this->breakMinutes($attendance)) : '',
-                'work_total' => $attendance ? $this->formatMinutes($this->workMinutes($attendance)) : '',
+
+                // ★ 休憩は「1分でもあれば表示」
+                'break_total' => $breakMinutes > 0 ? $this->formatMinutes($breakMinutes) : '',
+
+                // ★ 合計は「出勤・退勤が揃ったら表示」
+                'work_total' => $workMinutes > 0 ? $this->formatMinutes($workMinutes) : '',
             ];
         }
 
@@ -185,6 +197,7 @@ class AttendanceController extends Controller
 
         return view('attendance.list', compact('rows', 'monthLabel', 'prevMonth', 'nextMonth'));
     }
+
 
     public function detail(int $id): View
     {
@@ -225,6 +238,24 @@ class AttendanceController extends Controller
             'displayBreaks'
         ));
     }
+
+    public function correctionRequestList(Request $request): View
+    {
+        $user = $request->user();
+
+        // tab=pending / approved（デフォルト pending）
+        $tab = (string) $request->query('tab', 'pending');
+        $status = $tab === 'approved' ? 'approved' : 'pending';
+
+        $requests = CorrectionRequest::with(['attendance'])
+            ->where('user_id', $user->id)
+            ->where('status', $status)
+            ->orderByDesc('created_at')
+            ->paginate(10);
+
+        return view('stamp_correction_request.list', compact('requests', 'tab', 'user'));
+    }
+
 
     private function parseMonth(Request $request): Carbon
     {
@@ -276,12 +307,6 @@ class AttendanceController extends Controller
 
     public function requestCorrection(Request $request, int $id): RedirectResponse
     {
-        // =========================================================
-        // ✅【ここに 5) を組み込み】修正申請のバリデーション（指定メッセージ）
-        // ※ detail.blade.php の form action が attendance.correction_request のため
-        //   このメソッドがPOSTの受け口になっています
-        // =========================================================
-
         $user = $request->user();
 
         $attendance = Attendance::with('breaks')->findOrFail($id);
@@ -289,7 +314,6 @@ class AttendanceController extends Controller
             abort(403);
         }
 
-        // 二重申請防止（UIで隠していてもサーバー側でも防止）
         $alreadyPending = CorrectionRequest::where('attendance_id', $attendance->id)
             ->where('user_id', $user->id)
             ->where('status', 'pending')
@@ -364,18 +388,14 @@ class AttendanceController extends Controller
             return back()->withErrors($validator)->withInput();
         }
 
-        // =========================================================
-        // ここから下：申請保存（最小）
-        // （CorrectionRequest と breaks() リレーションが存在する前提）
-        // =========================================================
-
         $correctionRequest = CorrectionRequest::create([
             'attendance_id' => $attendance->id,
             'user_id' => $user->id,
             'status' => 'pending',
             'requested_work_start_time' => $request->input('work_start_time') . ':00',
-            'requested_work_end_time' => $request->input('work_end_time') . ':00',
+            'requested_w ork_end_time' => $request->input('work_end_time') . ':00',
             'requested_note' => $request->input('note'),
+            'requested_work_date' => $attendance->work_date,
         ]);
 
         $breakStarts = $request->input('break_start_time', []);
@@ -387,7 +407,6 @@ class AttendanceController extends Controller
             $bs = $bs ? ($bs . ':00') : null;
             $be = $be ? ($be . ':00') : null;
 
-            // 両方空の行は保存しない
             if ($bs === null && $be === null) {
                 continue;
             }
@@ -404,10 +423,6 @@ class AttendanceController extends Controller
 
     public function showCorrection(int $id): View
     {
-        // =========================================================
-        // 【構文エラー修正】メソッドの { } と引数名を正しく定義
-        // =========================================================
-
         $user = auth()->user();
 
         $attendance = Attendance::with('user')->findOrFail($id);

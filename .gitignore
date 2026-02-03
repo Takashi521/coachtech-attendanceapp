@@ -15,4 +15,4 @@ docker/mysql/data/
 # エディタの設定など（必要に応じて）
 .idea/
 .vscode/
-
+.env.testing

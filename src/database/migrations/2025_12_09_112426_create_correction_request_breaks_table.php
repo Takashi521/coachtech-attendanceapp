@@ -19,7 +19,7 @@ class CreateCorrectionRequestBreaksTable extends Migration
             $table->foreign('correction_request_id')
                 ->references('id')->on('correction_requests')
                 ->onDelete('cascade');
-            $table->unique(['correction_request_id', 'break_order']);
+            $table->unique(['correction_request_id', 'break_order'], 'crb_reqid_breakorder_uq');
         });
     }
 

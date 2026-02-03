@@ -1,62 +1,48 @@
-<!doctype html>
-<html lang="ja">
+@extends('layouts.app')
 
-<head>
-    <meta charset="utf-8">
-    <title>会員登録</title>
-    <style>
-        .form-errors {
-            margin: 12px 0;
-            padding-left: 18px;
-            color: #ff0000;
-        }
+@section('body_class', 'auth-page')
 
-        .form-errors__item {
-            margin: 4px 0;
-        }
-    </style>
-</head>
-
-<body>
-    <h1>会員登録</h1>
+@section('content')
+<div class="register-page">
+    <div class="register-card">
+        <h1 class="register-title">会員登録</h1>
 
     @if ($errors->any())
-    <ul class="form-errors">
+    　<div class="register-error-summary">
         @foreach ($errors->all() as $error)
-        <li class="form-errors__item">{{ $error }}</li>
+            <p class="register-error-message">・{{ $error }}</p>
         @endforeach
-    </ul>
-    @endif
+    　</div>
+　　@endif
 
+    <form class="register-form" method="POST" action="{{ route('register') }}">
+    @csrf
 
+    <div class="register-field">
+        <label class="register-label" for="name">名前</label>
+        <input class="register-input" id="name" type="text" name="name" value="{{ old('name') }}">
 
+    <div class="register-field">
+        <label class="register-label" for="email">メールアドレス</label>
+        <input class="register-input" id="email" type="email" name="email" value="{{ old('email') }}">
+    </div>
 
-    <form method="POST" action="{{ route('register') }}">
-        @csrf
-        <div>
-            <label>お名前</label>
-            <input type="text" name="name">
-        </div>
+    <div class="register-field">
+        <label class="register-label" for="password">パスワード</label>
+        <input class="register-input" id="password" type="password" name="password">
+    </div>
 
-        <div>
-            <label>メールアドレス</label>
-            <input type="email" name="email">
-        </div>
+    <div class="register-field">
+        <label class="register-label" for="password_confirmation">パスワード確認</label>
+        <input class="register-input" id="password_confirmation" type="password" name="password_confirmation">
+    </div>
 
-        <div>
-            <label>パスワード</label>
-            <input type="password" name="password">
-        </div>
-
-        <div>
-            <label>確認用パスワード</label>
-            <input type="password" name="password_confirmation">
-        </div>
-
-        <button type="submit">登録</button>
+    <button class="register-submit" type="submit">登録する</button>
     </form>
 
-    <p><a href="/login">ログインへ</a></p>
-</body>
-
-</html>
+        <div class="register-link-wrap">
+            <a class="register-link" href="{{ route('login') }}">ログインはこちら</a>
+        </div>
+    </div>
+</div>
+@endsection

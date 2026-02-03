@@ -1,52 +1,39 @@
-<!doctype html>
-<html lang="ja">
+@extends('layouts.app')
 
-<head>
-    <meta charset="utf-8">
-    <title>ログイン</title>
-    <style>
-        .form-errors {
-            margin: 12px 0;
-            padding-left: 18px;
-            color: #ff0000;
-        }
+@section('body_class', 'auth-page')
 
-        .form-errors__item {
-            margin: 4px 0;
-        }
-    </style>
-</head>
+@section('content')
+<div class="login-page">
+    <div class="login-card">
+        <h1 class="login-title">ログイン</h1>
 
-<body>
-    <h1>ログイン</h1>
+        @if ($errors->any())
+           <div class="auth-error-summary auth-error-summary--login">
+              @foreach ($errors->all() as $error)
+                <p class="auth-error-message">・{{ $error }}</p>
+              @endforeach
+           </div>
+        @endif
 
-    @if ($errors->any())
-    <ul class="form-errors">
-        @foreach ($errors->all() as $error)
-        <li class="form-errors__item">{{ $error }}</li>
-        @endforeach
-    </ul>
-    @endif
+        <form class="login-form" method="POST" action="/login">
+            @csrf
 
+            <div class="login-field">
+                <label class="login-label">メールアドレス</label>
+                <input class="login-input" type="email" name="email">
+            </div>
 
+            <div class="login-field">
+                <label class="login-label">パスワード</label>
+                <input class="login-input" type="password" name="password">
+            </div>
 
+            <button class="login-submit" type="submit">ログインする</button>
+        </form>
 
-    <form method="POST" action="/login">
-        @csrf
-        <div>
-            <label>メールアドレス</label>
-            <input type="email" name="email">
+        <div class="login-link-wrap">
+            <a class="login-link" href="/register">会員登録はこちら</a>
         </div>
-
-        <div>
-            <label>パスワード</label>
-            <input type="password" name="password">
-        </div>
-
-        <button type="submit">ログイン</button>
-    </form>
-
-    <p><a href="/register">会員登録へ</a></p>
-</body>
-
-</html>
+    </div>
+</div>
+@endsection
