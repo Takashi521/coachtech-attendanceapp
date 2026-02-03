@@ -1,12 +1,10 @@
 Warning: TTY mode requires /dev/tty to be read/writable.
 
-  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Auth\RegisterValidationTest[39m
-  [32;1m✓[39;22m[39m [2mname is required[22m[39m
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Auth\LoginValidationTest[39m
   [32;1m✓[39;22m[39m [2memail is required[22m[39m
-  [32;1m✓[39;22m[39m [2mpassword must be at least 8 characters[22m[39m
-  [32;1m✓[39;22m[39m [2mpassword confirmation must match[22m[39m
   [32;1m✓[39;22m[39m [2mpassword is required[22m[39m
+  [32;1m✓[39;22m[39m [2minvalid credentials returns error[22m[39m
 
-  [37;1mTests:  [39;22m[32;1m5 passed[39;22m
-  [37;1mTime:   [39;22m[39m0.45s[39m
+  [37;1mTests:  [39;22m[32;1m3 passed[39;22m
+  [37;1mTime:   [39;22m[39m0.44s[39m
 
