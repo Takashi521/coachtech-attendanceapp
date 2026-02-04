@@ -1,9 +1,9 @@
 Warning: TTY mode requires /dev/tty to be read/writable.
 
-  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Admin\AdminApprovalTest[39m
-  [32;1m✓[39;22m[39m [2madmin can open approval list[22m[39m
-  [32;1m✓[39;22m[39m [2madmin can approve request[22m[39m
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Auth\EmailVerificationTest[39m
+  [32;1m✓[39;22m[39m [2munverified user is redirected to verification notice[22m[39m
+  [32;1m✓[39;22m[39m [2mverified user can access attendance[22m[39m
 
   [37;1mTests:  [39;22m[32;1m2 passed[39;22m
-  [37;1mTime:   [39;22m[39m0.43s[39m
+  [37;1mTime:   [39;22m[39m0.42s[39m
 
