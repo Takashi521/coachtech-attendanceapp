@@ -1,11 +1,8 @@
 Warning: TTY mode requires /dev/tty to be read/writable.
 
-  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Attendance\MonthlyListTest[39m
-  [32;1m✓[39;22m[39m [2mlist shows current month by default[22m[39m
-  [32;1m✓[39;22m[39m [2mprev and next month links exist[22m[39m
-  [32;1m✓[39;22m[39m [2mdetail link is shown only when attendance exists[22m[39m
-  [32;1m✓[39;22m[39m [2mnot worked record does not show zero time total[22m[39m
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Attendance\DetailViewTest[39m
+  [32;1m✓[39;22m[39m [2mdetail shows logged in user name and selected date[22m[39m
 
-  [37;1mTests:  [39;22m[32;1m4 passed[39;22m
-  [37;1mTime:   [39;22m[39m0.43s[39m
+  [37;1mTests:  [39;22m[32;1m1 passed[39;22m
+  [37;1mTime:   [39;22m[39m0.41s[39m
 
