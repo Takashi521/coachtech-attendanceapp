@@ -60,9 +60,6 @@ Route::middleware(['auth', 'verified'])->group(function (): void {
     Route::get('/attendance/detail/{id}/correction', [AttendanceController::class, 'showCorrection'])
         ->name('attendance.correction.show');
 
-    Route::post('/attendance/detail/{id}/correction', [AttendanceController::class, 'storeCorrection'])
-        ->name('attendance.correction.store');
-
     Route::post('/attendance/detail/{id}/request', [AttendanceController::class, 'requestCorrection'])
         ->name('attendance.correction_request');
 
