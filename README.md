@@ -31,7 +31,7 @@ php artisan migrate --seed
 
 ## ER図
 
- ![ER図](./docs/er-diagram.png)
+ ![ER図](./src/docs/er-diagram.png)
 
 
 ## Tests
