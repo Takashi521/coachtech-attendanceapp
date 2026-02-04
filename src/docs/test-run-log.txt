@@ -1,10 +1,9 @@
 Warning: TTY mode requires /dev/tty to be read/writable.
 
-  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Admin\AdminAttendanceEditTest[39m
-  [32;1m✓[39;22m[39m [2madmin can open attendance edit page[22m[39m
-  [32;1m✓[39;22m[39m [2minvalid update returns validation error[22m[39m
-  [32;1m✓[39;22m[39m [2mvalid update updates attendance[22m[39m
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Admin\StaffListMonthlyTest[39m
+  [32;1m✓[39;22m[39m [2madmin can open staff list[22m[39m
+  [32;1m✓[39;22m[39m [2madmin can open staff monthly attendance[22m[39m
 
-  [37;1mTests:  [39;22m[32;1m3 passed[39;22m
-  [37;1mTime:   [39;22m[39m0.45s[39m
+  [37;1mTests:  [39;22m[32;1m2 passed[39;22m
+  [37;1mTime:   [39;22m[39m0.42s[39m
 
